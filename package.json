@@ -8,14 +8,23 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server --open",
-    "build": "webpack"
-  },
-  "devDependencies": {
-    "webpack": "^3.4.1",
-    "webpack-dev-server": "^2.6.1"
+    "build": "webpack",
+    "lint": "eslint --ext .js,.html src/ dev/",
+    "fix": "eslint --fix --ext .js,.html src/ dev/"
   },
   "dependencies": {
     "mutable-buffer": "^2.0.3",
     "socket.io-client": "^2.0.3"
+  },
+  "devDependencies": {
+    "eslint": "^4.3.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-html": "^3.1.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "webpack": "^3.4.1",
+    "webpack-dev-server": "^2.6.1"
   }
 }

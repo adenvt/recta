@@ -5,6 +5,11 @@
 
 	<link rel="stylesheet" type="text/css" href="css/normalize.css">
 	<link rel="stylesheet" type="text/css" href="css/skeleton.css">
+  <style type="text/css">
+    #message {
+      color: #F44336;
+    }
+  </style>
 </head>
 <body>
 <div class="container">
@@ -27,63 +32,68 @@
 			<div class="twelve columns">
 				<button id="open" class="button-default" onclick="toggle(event)">Open</button>
 				<button id="print" class="button-default" onclick="printing(event)" style="display: none">Print</button>
-			</div>
-		</div>
-	</div>
+        <p id="message"></p>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script src="recta.js"></script>
 <script type="text/javascript">
-	var printer = new Recta(1811, '1309616497')
-	var data = null
+    var printer = null
 
-	function toggle(e) {
-		e.preventDefault()
+    // eslint-disable-next-line no-unused-vars
+    function toggle (e) {
+      e.preventDefault()
 
-		e.target.innerText === 'OPEN'
-			? opening(e)
-			: closing(e)
-	}
+      e.target.innerText === 'OPEN'
+        ? opening(e)
+        : closing(e)
+    }
 
-	function opening(e) {
-		e.preventDefault()
+    // eslint-disable-next-line no-unused-vars
+    function opening (e) {
+      e.preventDefault()
 
-		var key = document.getElementById('key')
-		var port = document.getElementById('port')
-		var print = document.getElementById('print')
+      var key = document.getElementById('key')
+      var port = document.getElementById('port')
+      var msg = document.getElementById('message')
 
-		printer = new Recta(key.value, port.value)
-		printer.on('open', () => {
-			document.getElementById('print').style.display = 'inline-block'
+      msg.innerText = ''
 
-			e.target.innerText = 'CLOSE'
-		})
-		printer.on('close', () => {
-			document.getElementById('print').style.display = 'none'
+      printer = new Recta(key.value, port.value)
+      printer.on('open', () => {
+        document.getElementById('print').style.display = 'inline-block'
 
-			e.target.innerText = 'OPEN'
-		})
-		printer.open().catch((e) => {
-			console.log(e)
-		})
-	}
+        e.target.innerText = 'CLOSE'
+      })
+      printer.on('close', () => {
+        document.getElementById('print').style.display = 'none'
 
-	function closing(e) {
-		e.preventDefault()
+        e.target.innerText = 'OPEN'
+      })
+      printer.open().catch((e) => {
+        document.getElementById('message').innerText = e
+      })
+    }
 
-		printer.close()
-	}
+    // eslint-disable-next-line no-unused-vars
+    function closing (e) {
+      e.preventDefault()
 
-	function printing(e) {
-		e.preventDefault()
+      printer.close()
+    }
 
-		var textbox = document.getElementById('textbox')
+    // eslint-disable-next-line no-unused-vars
+    function printing (e) {
+      e.preventDefault()
 
-		printer
-			.text(textbox.value)
-			.print()
-	}
+      var textbox = document.getElementById('textbox')
 
+      printer
+        .text(textbox.value)
+        .print()
+    }
 </script>
 </body>
 </html>

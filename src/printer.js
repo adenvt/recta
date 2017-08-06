@@ -77,9 +77,8 @@ export default class Printer extends EventEmitter {
   align (align) {
     const index = PRINT_ALIGN.indexOf(align.toUpperCase())
 
-    if (index < 0) {
+    if (index < 0)
       throw new Error(`Not support align '${align}', only support 'LEFT', 'CENTER', 'RIGHT'`)
-    }
 
     this.buffer.write([0x1b, 0x61])
     this.buffer.writeUInt8(index)
@@ -116,13 +115,11 @@ export default class Printer extends EventEmitter {
   barcode (type, barcode, height) {
     const index = PRINT_BARCODE.indexOf(type.toUpperCase())
 
-    if (index < 0) {
+    if (index < 0)
       throw new Error(`Not support barcode '${type}'`)
-    }
 
-    if (height) {
+    if (height)
       this.barcodeHeight(height)
-    }
 
     this.buffer.write([0x1d, 0x6b])
     this.buffer.writeUInt8(65 + index)
