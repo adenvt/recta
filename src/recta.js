@@ -6,5 +6,3 @@ export default class Recta extends Printer {
     super(new Adapter({ key, port }))
   }
 }
-
-window.Recta = Recta
