@@ -6,9 +6,9 @@ export default class WebSocket extends Adapter {
     super()
 
     this.device = new Socket(`ws://localhost:${port}`, {
-      transports: ['websocket'],
-      query: `token=${key}`,
-      autoConnect: false,
+      transports  : ['websocket'],
+      query       : `token=${key}`,
+      autoConnect : false,
       reconnection: false,
     })
     this.device.on('connect', () => {
@@ -22,17 +22,15 @@ export default class WebSocket extends Adapter {
       this.emit('close')
     })
     this.device.on('error', (e) => {
-      if (this.isOpen) {
+      if (this.isOpen)
         this.emit('error', e)
-      }
     })
   }
 
   open () {
     return new Promise((resolve, reject) => {
-      if (this.isOpen) {
+      if (this.isOpen)
         return resolve()
-      }
 
       this.device.open().once('connect', () => {
         this.emit('open')
@@ -50,9 +48,8 @@ export default class WebSocket extends Adapter {
 
   close () {
     return new Promise((resolve) => {
-      if (!this.isOpen) {
+      if (!this.isOpen)
         return resolve()
-      }
 
       this.device.close()
       this.emit('close')
@@ -63,9 +60,8 @@ export default class WebSocket extends Adapter {
 
   write (buffer) {
     try {
-      if (!this.isOpen) {
+      if (!this.isOpen)
         throw new Error('Adapter not opened')
-      }
 
       this.device.send(buffer)
     } catch (e) {
