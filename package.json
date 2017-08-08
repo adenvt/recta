@@ -5,7 +5,11 @@
   "main": "dist/recta.js",
   "module": "src/recta.js",
   "repository": "https://github.com/adenvt/recta.git",
-  "author": "adenvt <adenvt@gmail.com>",
+  "author": {
+    "name": "Ade Novid",
+    "email": "adenvt@gmail.com",
+    "url": "http://adenovid.net"
+  },
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server --env=dev --open",
