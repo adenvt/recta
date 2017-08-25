@@ -4,7 +4,7 @@ var webpack = require('webpack');
 module.exports = {
   entry: './src/recta.js',
   output: {
-    filename: 'recta.min.js',
+    filename: 'recta.js',
     path: path.resolve(__dirname, 'dist'),
     library: {
       root: 'Recta',

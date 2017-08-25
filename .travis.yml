@@ -1,0 +1,34 @@
+os:
+  - linux
+dist: trusty
+sudo: false
+language: node_js
+node_js:
+  - lts/*
+matrix:
+  include:
+  - env: BROWSER=Chrome
+    addons:
+      chrome: stable
+  - env: BROWSER=Firefox
+    addons:
+      firefox: latest
+cache:
+  directories:
+    - $HOME/.npm
+    - $(npm config get prefix)/lib/node_modules
+    - $(npm config get prefix)/bin/karma
+    - node_modules
+install:
+  - karma --version || npm install -g karma-cli
+  - yarn
+before_script:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3
+script:
+  - npm run lint
+  - npm run build
+  - karma start --single-run --browsers $BROWSER
+notifications:
+  slack: recta-project:vrt37eDk30kgeyJ24LKGrjID

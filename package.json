@@ -14,10 +14,10 @@
   "scripts": {
     "start": "webpack-dev-server --env=dev --open",
     "dev": "webpack --env=dev --progress --colors",
-    "build": "webpack --env=prod --progress --colors",
+    "build": "webpack --env=prod --colors",
     "lint": "eslint --ext .js,.html src/ dev/ test/",
     "fix": "eslint --fix --ext .js,.html src/ dev/ test/",
-    "test": "karma start --single-run --browsers $BROWSER",
+    "test": "karma start --single-run",
     "karma": "karma start"
   },
   "dependencies": {
