@@ -21,6 +21,10 @@ export default class Printer extends EventEmitter {
     })
   }
 
+  get isOpen () {
+    return this.adapter.isOpen
+  }
+
   raw (raw) {
     this.buffer.write(raw)
 

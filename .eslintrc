@@ -1,7 +1,8 @@
 {
   "extends": ["standard"],
   "env": {
-    "browser": true
+    "browser": true,
+    "mocha": true
   },
   "plugins": ["import", "html"],
   "parserOptions": {
@@ -26,11 +27,11 @@
     "import/no-unresolved": ["error"],
     "linebreak-style": "off",
     "key-spacing": ["error", {
-        "align": {
-          "beforeColon": false,
-          "afterColon": true,
-          "on": "colon"
-        },
+      "align": {
+        "beforeColon": false,
+        "afterColon": true,
+        "on": "colon"
+      },
     }]
   }
 }
