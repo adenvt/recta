@@ -1,5 +1,7 @@
 /* eslint-disable no-unused-expressions */
 describe('Recta', function () {
+  this.timeout(60000)
+
   it('Should be defined', () => {
     Recta.should.not.be.undefined
   })
