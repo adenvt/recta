@@ -1,0 +1,37 @@
+{
+  "extends": ["standard"],
+  "env": {
+    "browser": true,
+    "mocha": true
+  },
+  "plugins": ["import", "html"],
+  "parserOptions": {
+    "ecmaVersion": 8
+  },
+  "settings": {
+    "html/indent": "+4",
+    "html/html-extensions": [".html"]
+  },
+  "globals": {
+    "Recta": true
+  },
+  "rules": {
+    "curly": ["error", "multi-or-nest"],
+    "comma-dangle": ["error", "always-multiline"],
+    "no-console": "error",
+    "prefer-const": "error",
+    "prefer-template": "error",
+    "import/extensions": "off",
+    "import/order": ["error", { "newlines-between": "never" }],
+    "import/no-extraneous-dependencies": "off",
+    "import/no-unresolved": ["error"],
+    "linebreak-style": "off",
+    "key-spacing": ["error", {
+      "align": {
+        "beforeColon": false,
+        "afterColon": true,
+        "on": "colon"
+      },
+    }]
+  }
+}

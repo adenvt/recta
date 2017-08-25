@@ -1,0 +1,55 @@
+{
+  "name": "recta",
+  "version": "1.0.0",
+  "description": "Direct printing from Browser",
+  "main": "dist/recta.js",
+  "module": "src/recta.js",
+  "repository": "https://github.com/adenvt/recta.git",
+  "keywords": [
+    "printer",
+    "recta",
+    "escpos"
+  ],
+  "author": {
+    "name": "Ade Novid",
+    "email": "adenvt@gmail.com",
+    "url": "http://adenovid.net"
+  },
+  "license": "MIT",
+  "scripts": {
+    "start": "webpack-dev-server --env=dev --open",
+    "dev": "webpack --env=dev --progress --colors",
+    "build": "webpack --env=prod --colors",
+    "lint": "eslint --ext .js,.html src/ dev/ test/ ./*.js",
+    "fix": "eslint --fix --ext .js,.html src/ dev/ test/ ./*.js",
+    "test": "karma start --single-run",
+    "karma": "karma start"
+  },
+  "devDependencies": {
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.1",
+    "babel-preset-env": "^1.6.0",
+    "chai": "^4.1.1",
+    "chai-as-promised": "^7.1.1",
+    "eslint": "^4.3.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-html": "^3.1.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "karma": "^1.7.0",
+    "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-firefox-launcher": "^1.0.1",
+    "karma-mocha": "^1.3.0",
+    "karma-mocha-reporter": "^2.2.3",
+    "karma-socketio-server": "^1.0.0",
+    "karma-webpack": "^2.0.4",
+    "mocha": "^3.5.0",
+    "mutable-buffer": "^2.0.3",
+    "socket.io-client": "^2.0.3",
+    "webpack": "^3.4.1",
+    "webpack-dev-server": "^2.6.1"
+  }
+}

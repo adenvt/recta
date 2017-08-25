@@ -1,0 +1,53 @@
+os:
+  - linux
+dist: trusty
+sudo: false
+language: node_js
+node_js:
+  - lts/*
+matrix:
+  include:
+  - env: BROWSER=Chrome
+    addons:
+      chrome: stable
+  - env: BROWSER=Firefox
+    addons:
+      firefox: latest
+cache:
+  directories:
+    - $HOME/.npm
+    - $(npm config get prefix)/lib/node_modules
+    - $(npm config get prefix)/bin/karma
+    - node_modules
+install:
+  - karma --version || npm install -g karma-cli
+  - yarn
+before_script:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3
+script:
+  - npm run lint
+  - npm run build
+  - karma start --single-run --browsers $BROWSER
+notifications:
+  slack: recta-project:vrt37eDk30kgeyJ24LKGrjID
+deploy:
+  - provider: npm
+    email: "adenvt@gmail.com"
+    api_key:
+      secure: urRk3z3aNOXVvc/lffjK+6N4olN1lwMUi/lMjvLF4hScIIkz4WYx1TEeoJsO0vEmVRmCvuHZkLYPuMx1/onmCifBST8eZRdX2mqMows+dN1V9PxLvCEFmzq+3XublCu1Rtn2PD9XVaSUjunKMve8sNHsEciv98TWVmNjyq6qzkqQpSmcW38y5VTwz+Yv0XdZahWTY0XPQtxaCyGFUYvuBFGafIC1ufdSj4cA0uRXzRWOdxnRC+rNnPYP1dO+utGNg8iV9wlzKUlFOHsJtlX4eKQGQsbfDzCdkgjb1U/I8ESsiwGcwZpJGNAKPGjMOqCWcI8VLq3ZnVeuE6l13IoMZk817Gzh8D2IVmsRyqwRaLq2sJY3iCVkWUVoiybkDp92VhAWhu5TkgoOOpK9DirNRjIjbdgFb9BB3k//9Vj2t5NAKiSmkIqWhK2LLXhT9hLquJ90bMadJzg+RYUS7Gt4vgMpvisZ2G/kQGq06qqwj5tV2r7KiewGxUh6A/4VOTWp8Eog2t5xx4nCeGbiMwKEX8P82fDe4+IV0ILhzT/OCj4rYHDIGUUSWA827pLt+Xp8wTA6s4RxopS8EAJsbRjmmdCC1otEzj/+qWVe58phOtkeoj028KYjGVTamBti0SfMuFuyx3PQzsKMRrmnob2U9J56kFGcJkgwa4XwnW7xluk=
+    skip_cleanup: true
+    on:
+      tags: true
+      condition: $BROWSER = Chrome
+  - provider: releases
+    api_key:
+      secure: LQzEmTzd99jDTTgvPnf/pdTG+PTumDsWt1UohecoXs/VRE3hWnOMzYtBjCtuS4QLaa/emClFAHmB4NnGwzjtEHcCgPxot1726YxQHpVjuyRHH/jeaHlHHhDLHNgjJBP0i/CjF0u6j6FK36fq3khnyz9BJXjLilUM3jEWFp9CWXMPcmZ7+jAzDc5ck9LlEJCLimumtEPt87KBdnwHk8/mrOOhjuppXmapSLrBjKAyOoqiKedeP+j5/zIVxXBkpxOrRK7LQjNdNO9idNGQ29iMX/iZ5WWjSBw2cyRBXstivIwkXV1ExN5pznds6XQdWQkKhQ3CNaiPOZ/Zk6EZGX9EfI1kyfr7NEKmonhtxDVh92RLcIX/mQjpReDc6GqsmRwyovG44NZLagQGryN3gWlE13OD0/vEiU66zPKi3MDHuGaEuxtkUgsLC/ZzKbnCeqCiX77gZFQKIV5IJNJy2l/tIG6LpMH39000MjOIoEWw5ap+pPgTE7HLoD0r5v5HzuWmYx0rUXxGqJjiWkQuTE7ZVMpXGVVp38uV1oyEVuLLp1s33s/nqqvPRKU52fW9GdCcLIekhlnNyD98WOUOmztNM2wdIUSjqJLhILoyeUN2rgXudE0k9Q7ScSBvyD0vbOagZGQEAMD3Slv9PS2TZQBJBfIKnscInKpAauOk47O0BOg=
+    file: dist/recta.js
+    draft: true
+    tag_name: $TRAVIS_TAG
+    skip_cleanup: true
+    on:
+      tags: true
+      condition: $BROWSER = Chrome

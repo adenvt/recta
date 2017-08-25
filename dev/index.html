@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Recta Print Debug</title>
+
+	<link rel="stylesheet" type="text/css" href="css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="css/skeleton.css">
+  <style type="text/css">
+    #message {
+      color: #F44336;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+	<div class="row">
+		<div class="row">
+			<div class="twelve columns">
+				<label>App Key</label>
+				<input id="key" class="u-full-width" type="text" placeholder="Application Key">
+			</div>
+			<div class="twelve columns">
+				<label>App Port</label>
+				<input id="port" class="u-full-width" type="text" placeholder="Service Run on Port" value="1811">
+			</div>
+			<div class="twelve columns">
+				<label>Textbox</label>
+				<textarea id="textbox" rows="15" class="u-full-width"></textarea>
+			</div>
+		</div>
+		<div class="row">
+			<div class="twelve columns">
+				<button id="open" class="button-default" onclick="toggle(event)">Open</button>
+				<button id="print" class="button-default" onclick="printing(event)" style="display: none">Print</button>
+        <p id="message"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="recta.js"></script>
+<script type="text/javascript">
+    var printer = null
+
+    // eslint-disable-next-line no-unused-vars
+    function toggle (e) {
+      e.preventDefault()
+
+      e.target.innerText === 'OPEN'
+        ? opening(e)
+        : closing(e)
+    }
+
+    // eslint-disable-next-line no-unused-vars
+    function opening (e) {
+      e.preventDefault()
+
+      var key = document.getElementById('key')
+      var port = document.getElementById('port')
+      var msg = document.getElementById('message')
+
+      msg.innerText = ''
+
+      printer = new Recta(key.value, port.value)
+      printer.on('open', () => {
+        document.getElementById('print').style.display = 'inline-block'
+
+        e.target.innerText = 'CLOSE'
+      })
+      printer.on('close', () => {
+        document.getElementById('print').style.display = 'none'
+
+        e.target.innerText = 'OPEN'
+      })
+      printer.open().catch((e) => {
+        document.getElementById('message').innerText = e
+      })
+    }
+
+    // eslint-disable-next-line no-unused-vars
+    function closing (e) {
+      e.preventDefault()
+
+      printer.close()
+    }
+
+    // eslint-disable-next-line no-unused-vars
+    function printing (e) {
+      e.preventDefault()
+
+      var textbox = document.getElementById('textbox')
+
+      printer
+        .text(textbox.value)
+        .print()
+    }
+</script>
+</body>
+</html>
