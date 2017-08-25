@@ -1,6 +1,9 @@
 # Recta
 
-> Direct printing from JS
+> Direct printing from Browser
+
+[![Build Status](https://travis-ci.org/adenvt/recta.svg?branch=master)](https://travis-ci.org/adenvt/recta)
+[![npm version](https://badge.fury.io/js/recta.svg)](https://badge.fury.io/js/recta)
 
 ## Introduction
 
@@ -19,7 +22,7 @@ Recta need desktop software called [Recta Host][recta-host], it serve all hardwa
 Just include it like other JS library
 ```html
 ...
-<script src="http://recta.adenovid.net/1.0.0/recta.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/recta/dist/recta.js"></script>
 ...
 ```
 
@@ -71,7 +74,7 @@ import Recta from 'recta'
 #### *new* Recta(key, port)
 Create a new Recta object, parameter:
 
-* Key: APPKEY used to authentication with Host
+* Key: APPKEY used to authentication with Host, You can see on your [Recta Host][recta-host] Configuration
 * Port: port of host, *default*: 1811
 
 ### Methods

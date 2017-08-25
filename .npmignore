@@ -1,0 +1,4 @@
+// Ignore All
+*
+// Except dist
+!dist/

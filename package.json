@@ -1,10 +1,15 @@
 {
   "name": "recta",
-  "version": "0.1.0",
-  "description": "Direct Print from JS",
+  "version": "1.0.0",
+  "description": "Direct printing from Browser",
   "main": "dist/recta.js",
   "module": "src/recta.js",
   "repository": "https://github.com/adenvt/recta.git",
+  "keywords": [
+    "printer",
+    "recta",
+    "escpos"
+  ],
   "author": {
     "name": "Ade Novid",
     "email": "adenvt@gmail.com",
@@ -19,10 +24,6 @@
     "fix": "eslint --fix --ext .js,.html src/ dev/ test/ ./*.js",
     "test": "karma start --single-run",
     "karma": "karma start"
-  },
-  "dependencies": {
-    "mutable-buffer": "^2.0.3",
-    "socket.io-client": "^2.0.3"
   },
   "devDependencies": {
     "babel-core": "^6.25.0",
@@ -46,6 +47,8 @@
     "karma-socketio-server": "^1.0.0",
     "karma-webpack": "^2.0.4",
     "mocha": "^3.5.0",
+    "mutable-buffer": "^2.0.3",
+    "socket.io-client": "^2.0.3",
     "webpack": "^3.4.1",
     "webpack-dev-server": "^2.6.1"
   }
