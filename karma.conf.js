@@ -1,8 +1,8 @@
 module.exports = function (config) {
   config.set({
-    basePath  : '',
+    basePath      : '',
     socketioServer: {
-      port: 1811,
+      port     : 1811,
       onConnect: function (socket) {
         socket.on('message', function (msg) {
           // Echoing everything
@@ -11,7 +11,7 @@ module.exports = function (config) {
       },
       ready: function (io) {
         io.use((socket, next) => {
-          const token  = socket.handshake.query.token
+          const token = socket.handshake.query.token
           const appkey = '123456789'
 
           if (token !== appkey)
@@ -19,23 +19,23 @@ module.exports = function (config) {
 
           return next()
         })
-      }
+      },
     },
     frameworks: ['mocha', 'chai', 'socketio-server'],
     files     : [
       'dist/*.js',
       'test/*.js',
     ],
-    exclude      : [],
-    preprocessors: {},
-    reporters    : ['mocha'],
-    port         : 9876,
-    colors       : true,
-    logLevel     : config.LOG_INFO,
-    autoWatch    : true,
-    browsers     : ['Chrome', 'Firefox'],
-    singleRun    : false,
-    concurrency  : Infinity,
-    browserNoActivityTimeout: 30000
+    exclude                 : [],
+    preprocessors           : {},
+    reporters               : ['mocha'],
+    port                    : 9876,
+    colors                  : true,
+    logLevel                : config.LOG_INFO,
+    autoWatch               : true,
+    browsers                : ['Chrome', 'Firefox'],
+    singleRun               : false,
+    concurrency             : Infinity,
+    browserNoActivityTimeout: 30000,
   })
 }

@@ -21,7 +21,7 @@ export default class Printer extends EventEmitter {
     })
   }
 
-  get isOpen() {
+  get isOpen () {
     return this.adapter.isOpen
   }
 
